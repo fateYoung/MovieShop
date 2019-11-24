@@ -1,0 +1,7 @@
+﻿@model List<MovieShop.Entities.Genre>
+
+
+@foreach (var genres in Model)
+{
+    @Html.ActionLink(genres.Name, "Index", "Movies", new { id = genres.Id}, new { @class = "dropdown-item"})
+}
