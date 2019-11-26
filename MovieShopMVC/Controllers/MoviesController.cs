@@ -36,5 +36,22 @@ namespace MovieShopMVC.Controllers
             var movies = _movieService.GetMoviesByGenreId(id);
             return View(movies);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Movie movie)
+        {
+            if (ModelState.IsValid) //Save to database only when model is valid
+            {
+                // redirect to indext action method
+                return RedirectToAction("TopMovies");
+            }
+            return View();
+        }
     }
 }

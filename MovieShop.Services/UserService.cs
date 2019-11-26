@@ -16,6 +16,11 @@ namespace MovieShop.Services
             _userRepository = new UserRepository(new MovieShopDbContext());
         }
 
+        public void InsertNewUser(User user)
+        {
+            _userRepository.Add(user);
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             return _userRepository.GetAll();
