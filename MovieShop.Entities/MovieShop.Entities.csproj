@@ -67,11 +67,5 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MovieShop.Utility\MovieShop.Utility.csproj">
-      <Project>{55f25ccf-bfb9-4d0f-a2ba-afddc48d82fc}</Project>
-      <Name>MovieShop.Utility</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

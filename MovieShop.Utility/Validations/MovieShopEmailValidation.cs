@@ -20,8 +20,10 @@ namespace MovieShop.Utility.Validations
 
                 //if service returns user obj
                 //it means user does exists ---- return false
+                return false;
             }
-            return base.IsValid(value);
+
+            return true;
         }
     }
 }

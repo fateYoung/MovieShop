@@ -11,10 +11,10 @@ namespace MovieShopMVC.Controllers
     [RoutePrefix("Movies")]
     public class MoviesController : Controller
     {
-        private MovieService _movieService;
-        public MoviesController()
+        private readonly IMovieService _movieService;
+        public MoviesController(IMovieService movieService)
         {
-            _movieService = new MovieService();
+            _movieService = movieService;
         }
 
         public ActionResult TopRateMovies()
@@ -48,7 +48,7 @@ namespace MovieShopMVC.Controllers
         {
             if (ModelState.IsValid) //Save to database only when model is valid
             {
-                // redirect to indext action method
+                // redirect to indexf action method
                 return RedirectToAction("TopMovies");
             }
             return View();

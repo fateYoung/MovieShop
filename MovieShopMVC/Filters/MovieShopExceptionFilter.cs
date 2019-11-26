@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MovieShopMVC.Filters
 {
-    public class MovieShopException : HandleErrorAttribute
+    public class MovieShopExceptionFilter : HandleErrorAttribute
     {
         public override void OnException(ExceptionContext filterContext)
         {
@@ -33,6 +34,11 @@ namespace MovieShopMVC.Filters
             filterContext.HttpContext.Response.Clear();
             filterContext.HttpContext.Response.StatusCode = 500;
             filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+
+            Logger logger = LogManager.GetLogger("MovieShopExceptionLogger");
+            logger.Info("An Exception");
+            // logger.Error(filterContext.Exception, "There is an exception");
+
             base.OnException(filterContext);
         }
     }

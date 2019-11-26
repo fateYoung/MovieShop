@@ -8,7 +8,7 @@ namespace MovieShopMVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new MovieShopException());
+            filters.Add(new MovieShopExceptionFilter());
         }
     }
 }

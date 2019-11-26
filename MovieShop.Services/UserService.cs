@@ -35,6 +35,11 @@ namespace MovieShop.Services
         {
             return _userRepository.GetById(id);
         }
+
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.Get(u => u.Email == email);
+        }
     }
 
     public interface IUserService
@@ -42,5 +47,6 @@ namespace MovieShop.Services
         IEnumerable<User> GetUserByFullName(string FirstName, string LastName);
         User GetUserById(int id);
         IEnumerable<User> GetAllUsers();
+        User GetUserByEmail(string email);
     }
 }

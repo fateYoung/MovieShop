@@ -1,4 +1,5 @@
 ﻿using MovieShopMVC.Filters;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace MovieShopMVC.Controllers
         {
             int i = 0;
             int x = 1;
-            int z = x / i;
+            int z = x / i;           
             ViewBag.Message = "Your application description page.";
 
             return View();

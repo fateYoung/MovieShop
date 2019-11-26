@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MovieShop.Utility.Validations;
 
 namespace MovieShop.Entities
 {
@@ -20,7 +19,6 @@ namespace MovieShop.Entities
         [Column(TypeName = "datetime2")]
         public DateTime? DateOfBirth { get; set; }
 
-        [MovieShopEmailValidation]
         [StringLength(256)]
         public string Email { get; set; }
         [StringLength(1024)]

@@ -10,10 +10,10 @@ namespace MovieShop.Services
 {
     public class MovieService : IMovieService
     {
-        MovieRepository _movieRepository;
-        public MovieService()
+        private readonly IMovieRepository _movieRepository;
+        public MovieService(IMovieRepository movieRepository)
         {
-            _movieRepository = new MovieRepository(new MovieShopDbContext());
+            _movieRepository = movieRepository;
         }
 
         public Movie GetMovieById(int id)
@@ -41,6 +41,41 @@ namespace MovieShop.Services
             return _movieRepository.GetTopRatingMovies();
         }
     }
+
+    public class MovieService2 : IMovieService
+    {
+        private readonly IMovieRepository _movieRepository;
+        public MovieService2(IMovieRepository movieRepository)
+        {
+            _movieRepository = movieRepository;
+        }
+
+        public Movie GetMovieById(int id)
+        {
+            return _movieRepository.GetById(id);
+        }
+
+        public Movie GetMovieByName(string name)
+        {
+            return _movieRepository.Get(m => m.Title == name);
+        }
+
+        public IEnumerable<Movie> GetMoviesByGenreId(int genreId)
+        {
+            return _movieRepository.GetMovieByGenreId(genreId);
+        }
+
+        public IEnumerable<Movie> GetTopGrossingMovies()
+        {
+            return _movieRepository.GetTopRevenueMovies();
+        }
+
+        public IEnumerable<Movie> GetTopRatedMovies()
+        {
+            return _movieRepository.GetTopRatingMovies();
+        }
+    }
+
 
     public interface IMovieService
     {
