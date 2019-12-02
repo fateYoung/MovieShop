@@ -16,6 +16,11 @@ namespace MovieShop.Services
             _movieRepository = movieRepository;
         }
 
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            return _movieRepository.GetAll();
+        }
+
         public Movie GetMovieById(int id)
         {
             return _movieRepository.GetById(id);
@@ -29,6 +34,16 @@ namespace MovieShop.Services
         public IEnumerable<Movie> GetMoviesByGenreId(int genreId)
         {
             return _movieRepository.GetMovieByGenreId(genreId);
+        }
+
+        public IEnumerable<Movie> GetTop20FavoritedMovies()
+        {
+            return _movieRepository.GetTopFavoritedMovies();
+        }
+
+        public IEnumerable<Movie> GetTop20PurchasedMovies()
+        {
+            return _movieRepository.GetTopPurchasedMovies();
         }
 
         public IEnumerable<Movie> GetTopGrossingMovies()
@@ -50,6 +65,11 @@ namespace MovieShop.Services
             _movieRepository = movieRepository;
         }
 
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            throw new NotImplementedException();
+        }
+
         public Movie GetMovieById(int id)
         {
             return _movieRepository.GetById(id);
@@ -63,6 +83,16 @@ namespace MovieShop.Services
         public IEnumerable<Movie> GetMoviesByGenreId(int genreId)
         {
             return _movieRepository.GetMovieByGenreId(genreId);
+        }
+
+        public IEnumerable<Movie> GetTop20FavoritedMovies()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Movie> GetTop20PurchasedMovies()
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Movie> GetTopGrossingMovies()
@@ -84,5 +114,8 @@ namespace MovieShop.Services
         Movie GetMovieByName(string name);
         IEnumerable<Movie> GetMoviesByGenreId(int genreId);
         IEnumerable<Movie> GetTopRatedMovies();
+        IEnumerable<Movie> GetTop20PurchasedMovies();
+        IEnumerable<Movie> GetTop20FavoritedMovies();
+        IEnumerable<Movie> GetAllMovies();
     }
 }

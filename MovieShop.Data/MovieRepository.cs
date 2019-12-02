@@ -19,6 +19,36 @@ namespace MovieShop.Data
             return movies;
         }
 
+        public IEnumerable<Movie> GetTopFavoritedMovies()
+        {
+            var movieFavorited = _dbContext.Favorites.GroupBy(f => f.MovieId)
+                                                     .Select(mf => new { MovieId = mf.Key, Count = mf.Count() })
+                                                     .OrderByDescending(mf1 => mf1.Count).Take(20).ToList();
+            var movies = new List<Movie>();
+            foreach (var item in movieFavorited)
+            {
+                movies.Add(_dbContext.Movies.Where(m => m.Id == item.MovieId).FirstOrDefault());
+                movies.Where(m => m.Id == item.MovieId).FirstOrDefault().FavoritedCount = item.Count;
+            }
+
+            return movies.Where(m => m.FavoritedCount != null);
+        }
+
+        public IEnumerable<Movie> GetTopPurchasedMovies()
+        {
+            var moviePurchased = _dbContext.Purchases.GroupBy(p => p.MovieId)
+                                                     .Select(mp => new { MovieId = mp.Key, Count = mp.Count() })
+                                                     .OrderByDescending(mp1 => mp1.Count).Take(20).ToList();
+            var movies = new List<Movie>();
+            foreach (var item in moviePurchased)
+            {
+                movies.Add(_dbContext.Movies.Where(m => m.Id == item.MovieId).FirstOrDefault());
+                movies.Where(m => m.Id == item.MovieId).FirstOrDefault().PurchasedCount = item.Count;
+            }
+
+            return movies.Where(m => m.PurchasedCount != null);
+        }
+
         public IEnumerable<Movie> GetTopRatingMovies()
         {
             //var movieReview = (from movie in _dbContext.Movies
@@ -39,10 +69,11 @@ namespace MovieShop.Data
                                    MovieID = mr.Key,
                                    AvgReview = mr.Average(r => r.Rating)
                                };
-            var movieList = _dbContext.Movies.ToList();
+            var movieList = new List<Movie>();
 
             foreach (var mvRating in movieReview)
             {
+                movieList.Add(_dbContext.Movies.Where(m => m.Id == mvRating.MovieID).FirstOrDefault());
                 movieList.Where(m => m.Id == mvRating.MovieID).FirstOrDefault().AvgRating = mvRating.AvgReview;
             }
 
@@ -63,5 +94,7 @@ namespace MovieShop.Data
         IEnumerable<Movie> GetTopRevenueMovies();
         IEnumerable<Movie> GetMovieByGenreId(int genreId);
         IEnumerable<Movie> GetTopRatingMovies();
+        IEnumerable<Movie> GetTopPurchasedMovies();
+        IEnumerable<Movie> GetTopFavoritedMovies();
     }
 }

@@ -10,10 +10,10 @@ namespace MovieShop.Services
 {
     public class GenreService : IGenreService
     {
-        GenreRepository _genreRepository;
-        public GenreService()
+        private readonly IGenreRepository _genreRepository;
+        public GenreService(IGenreRepository genreRepository)
         {
-            _genreRepository = new GenreRepository(new MovieShopDbContext());
+            _genreRepository = genreRepository;
         }
 
         public IEnumerable<Genre> GetAllGenres()

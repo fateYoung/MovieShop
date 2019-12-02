@@ -1,16 +1,17 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MovieShopMVC.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MovieShopMVC.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MovieShop.API.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MovieShop.API.App_Start.NinjectWebCommon), "Stop")]
 
-namespace MovieShopMVC.App_Start
+namespace MovieShop.API.App_Start
 {
     using System;
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using MovieShop.Data;
-    using MovieShop.Services;
+
     using Ninject;
     using Ninject.Web.Common;
+    using MovieShop.Services;
+    using MovieShop.Data;
 
     public static class NinjectWebCommon 
     {
@@ -62,7 +63,7 @@ namespace MovieShopMVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IMovieService>().To<MovieService>();
+            kernel.Bind<IMovieService>().To<MovieService2>();
             kernel.Bind<IMovieRepository>().To<MovieRepository>();
             kernel.Bind<IGenreRepository>().To<GenreRepository>();
             kernel.Bind<IGenreService>().To<GenreService>();

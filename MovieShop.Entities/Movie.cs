@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace MovieShop.Entities
 {
@@ -44,21 +45,46 @@ namespace MovieShop.Entities
         public decimal? Price { get; set; }
 
         [Column(TypeName = "datetime2")]
+        //[JsonIgnore]
         public DateTime? CreatedDate { get; set; }
 
         [Column(TypeName = "datetime2")]
+        //[JsonIgnore]
         public DateTime? UpdatedDate { get; set; }
+
+        //[JsonIgnore]
         public string UpdatedBy { get; set; }
+
+        //[JsonIgnore]
         public string CreatedBy { get; set; }
 
+        //[JsonIgnore]
         public ICollection<Genre> Genres { get; set; }
+
+        //[JsonIgnore]
         public ICollection<Review> Reviews { get; set; }
+
+        //[JsonIgnore]
         public ICollection<MovieCast> MovieCasts { get; set; }
+
+        //[JsonIgnore]
         public ICollection<MovieCrew> MovieCrews { get; set; }
+
+        //[JsonIgnore]
         public ICollection<Purchase> Purchases { get; set; }
+
+        //[JsonIgnore]
         public ICollection<Favorite> Favorites { get; set; }
 
+        
         [NotMapped]
+        //[JsonIgnore]
         public decimal? AvgRating { get; set; }
+
+        [NotMapped]
+        public int? FavoritedCount { get; set; }
+
+        [NotMapped]
+        public int? PurchasedCount { get; set; }
     }
 }

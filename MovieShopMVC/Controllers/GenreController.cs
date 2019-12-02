@@ -10,10 +10,10 @@ namespace MovieShopMVC.Controllers
 {
     public class GenreController : Controller
     {
-        GenreService _genreService;
-        public GenreController()
+        private readonly IGenreService _genreService;
+        public GenreController(IGenreService genreService)
         {
-            _genreService = new GenreService();
+            _genreService = genreService;
         }
         // GET: Genre
         public PartialViewResult Index()

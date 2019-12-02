@@ -21,8 +21,13 @@
                         Movies
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Movies/AllMovies">AllMovies</a>
+                        @*<a>
+                            @Html.ActionLink("All Movies","AllMovies", "Movies")
+                        </a>*@
                         <a class="dropdown-item" href="Movies/TopRateMovies">Top Rated Movies</a>
                         <a class="dropdown-item" href="Movies/TopMovies">Top Revenue Movies</a>
+                        <a class="dropdown-item" href="Movies/TopPurchaseAndFavorite">Top Purchased and Favorited Movies</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

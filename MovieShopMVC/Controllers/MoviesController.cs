@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using MovieShop.Services;
 using MovieShop.Entities;
+using MovieShopMVC.ViewModel;
+using PagedList.Mvc;
+using PagedList;
 
 namespace MovieShopMVC.Controllers
 {
@@ -28,6 +31,22 @@ namespace MovieShopMVC.Controllers
         {
             var movies = _movieService.GetTopGrossingMovies();
             return View("Index", movies);
+        }
+
+        public ActionResult TopPurchaseAndFavorite()
+        {
+            var purchaseAndFavorite = new PurchaseFavoriteViewModel();
+            purchaseAndFavorite.FavoritesList = _movieService.GetTop20FavoritedMovies().ToList();
+            purchaseAndFavorite.PurchasesList = _movieService.GetTop20PurchasedMovies().ToList();
+            return View(purchaseAndFavorite);
+        }
+
+        public ViewResult AllMovies(int? page)
+        {
+            int pageSize = 20;
+            int pageIndex = page ?? 1;
+            var movies = _movieService.GetAllMovies().ToPagedList(pageIndex, pageSize);
+            return View(movies);
         }
 
         [Route("Genre/{id}")]

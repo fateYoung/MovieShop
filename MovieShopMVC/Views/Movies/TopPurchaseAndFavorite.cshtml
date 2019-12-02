@@ -1,0 +1,53 @@
+﻿@model MovieShopMVC.ViewModel.PurchaseFavoriteViewModel
+@{
+    ViewBag.Title = "TopPurchaseAndFavorite";
+}
+
+<h2>TopPurchaseAndFavorite</h2>
+<h3>Top 20 Purchased Movies</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Overview</td>
+            <td>Release Date</td>
+            <td>Total Purchased</td>
+        </tr>
+    </thead>
+    @foreach (var purchasedMovie in Model.PurchasesList)
+    {
+        <tr>
+            <td>@purchasedMovie.Id</td>
+            <td>@purchasedMovie.Title</td>
+            <td>@purchasedMovie.Overview</td>
+            <td>@purchasedMovie.ReleaseDate</td>
+            <td>@purchasedMovie.PurchasedCount</td>
+        </tr>
+    }
+
+</table>
+
+<h3>Top 20 Favorite Movies</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Overview</td>
+            <td>Release Date</td>
+            <td>Total Favorited</td>
+        </tr>
+    </thead>
+    @foreach (var favoritedMovie in Model.FavoritesList)
+    {
+        <tr>
+            <td>@favoritedMovie.Id</td>
+            <td>@favoritedMovie.Title</td>
+            <td>@favoritedMovie.Overview</td>
+            <td>@favoritedMovie.ReleaseDate</td>
+            <td>@favoritedMovie.PurchasedCount</td>
+        </tr>
+    }
+
+</table>
